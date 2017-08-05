@@ -1,0 +1,65 @@
+@import 'core/variables';
+
+body {
+  margin: 0;
+  font-family: $font_lato;
+  background-color: black;
+}
+
+input {
+  font-weight: 300;
+  font-size: 14px;
+  appearance: none;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+header {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  padding: 30px;
+}
+
+#searchbox {
+  height: 37px;
+  width: 200px;
+  color: #ffffff;
+  border: 2px solid rgba(245, 245, 241, 0.1);
+  border-radius: 37px;
+  padding: 0 10px;
+  transition: border .25s ease, width .125s ease .125s;
+  &:focus{
+    border: 2px solid #e50914;
+    width: 330px;
+  }
+}
+
+// Logo
+#logo {
+	width: 151px;
+	height: 41px;
+	margin-right: 30px;
+	transition: margin .125s ease;
+
+	svg {
+		transform: scale(.5);
+		transform-origin: 0 0;
+
+		path {
+			fill: $red;
+			transition: fill .125s ease;
+		}
+	}
+
+	&:hover {
+		cursor: pointer;
+		margin-top: 2px;
+		svg {
+			path {
+				fill: $white !important;
+			}
+		}
+	}
+}
