@@ -1,11 +1,16 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
 
 $font_lato: 'Lato', sans-serif;
 
 // Colors
 $red: #e50914;
 $black: #221f1f;
+$yellow: #FFEE58;
 $blackblack: #000000;
 $grey: #f5f5f1;
 $white: #ffffff;
+
+
+//Breakpoints
+$desktop-min: 1200px;

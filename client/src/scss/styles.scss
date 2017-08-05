@@ -1,9 +1,12 @@
 @import 'core/variables';
 
+//RESETS
 body {
   margin: 0;
   font-family: $font_lato;
   background-color: black;
+  color: $white;
+  overflow-x: hidden;
 }
 
 input {
@@ -15,10 +18,18 @@ input {
   background: transparent;
 }
 
+p {
+  margin: 0;
+}
+
+
+//--------------------------------------------------//
+
 header {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-flow: row wrap;
-  width: 100%;
   padding: 30px;
 }
 
@@ -62,4 +73,102 @@ header {
 			}
 		}
 	}
+}
+
+// UserProfile
+.user-profile{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  color: $white;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  &:hover > img {
+    box-shadow: inset 0 0 0 10px #f94f4f;
+  }
+  img{
+    width: 40px;
+    height: auto;
+    border-radius: 100%;
+    margin-left: 20px;
+    padding: 3px;
+  }
+}
+
+// TitleList
+.list-titles{
+  margin: 30px 0px 30px 30px;
+  overflow: hidden;
+}
+
+.list-container{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.6s ease;
+  .nav-slide{
+    position: absolute;
+    z-index: 100;
+    color: $white;
+    i{
+      font-size: 70px;
+      margin-top: 100px;
+      &:hover{
+        color: $red;
+        cursor: pointer;
+      }
+    }
+    &.nav-prev{
+      background: linear-gradient(to right,rgba(0,0,0,.95) 0,transparent 100%);
+      height: 282px;
+      left: 0;
+      padding-left: 20px;
+    }
+    &.nav-next{
+      background: linear-gradient(to left,rgba(0,0,0,.95) 0,transparent 100%);
+      height: 282px;
+      right: 0;
+    }
+  }
+  .title-item{
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    .title-name{
+      font-weight: 700;
+      color: $red;
+    }
+    .title-votes{
+      color: $yellow;
+      text-align: right;
+      margin-top: 10px;
+    }
+    .desc{
+      margin-top: 20px;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      line-height: 1.6;
+    }
+    .overlay{
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.6);
+      height: 238px;
+      width: 160px;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity .125s ease;
+      &:hover{
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
 }
