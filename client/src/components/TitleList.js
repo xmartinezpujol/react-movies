@@ -6,8 +6,8 @@ const MAX_TITLES = 20;
 const maxSlides = Math.trunc(((window.innerWidth - 30) / 195));
 const maxSlideMoves = Math.trunc((20 / maxSlides)) + 1;
 
-console.log(maxSlides);
-console.log(maxSlideMoves);
+//console.log(maxSlides);
+//console.log(maxSlideMoves);
 
 function scrollTo(element, direction, times) {
   if(times > 0){
