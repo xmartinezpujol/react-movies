@@ -39,11 +39,9 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    genrelist: state.genres,
-    user: state.user
-  };
-}
+const mapStateToProps = (state, ownProps) => {return {
+  genrelist: state.genres,
+  user: state.user
+}};
 
 export default withRouter(connect(mapStateToProps)(App));

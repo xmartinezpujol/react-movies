@@ -1,11 +1,11 @@
 import React from 'react';
-import TitleItem from './Items/TitleItem';
+import TitleItem from '../TitleItem';
 
 const API_KEY = '3068f3a34eb23cadda9e625ea4e903bd';
 const API_LANG = 'en-US';
 const MAX_TITLES = 20;
 const maxSlides = Math.trunc(((window.innerWidth - 30) / 195));
-const maxSlideMoves = Math.trunc((20 / maxSlides)) + 1;
+const maxSlideMoves = Math.trunc((MAX_TITLES / maxSlides)) + 1;
 
 //console.log(maxSlides);
 //console.log(maxSlideMoves);
@@ -42,7 +42,6 @@ class TitleList extends React.Component {
       .then(response => response.json())
       .then(res => {
         this.setState(() => { return {data: res.results }} );
-        window.data = res.results;
         }
       )
       .catch((res) => {
@@ -108,9 +107,11 @@ class TitleList extends React.Component {
                 <TitleItem key={index} title={name} votes={title.vote_average} desc={title.overview} img={title.poster_path}/>
               );
           })}
-          <div className='nav-slide nav-next'>
-            <i onClick={(e) => this.handleSlideMove(e, 'right')} className="material-icons">keyboard_arrow_right</i>
-          </div>
+          {this.state.currentSlideSet !== maxSlideMoves - 1 &&
+            <div className='nav-slide nav-next'>
+              <i onClick={(e) => this.handleSlideMove(e, 'right')} className="material-icons">keyboard_arrow_right</i>
+            </div>
+          }
         </div>
       </div>
     );

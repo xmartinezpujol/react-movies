@@ -1,5 +1,5 @@
 import React from 'react';
-import FavoritesGenresList from '../Lists/FavoritesGenresList';
+import FavoritesGenresList from './FavoritesGenresList';
 
 class Settings extends React.Component {
   constructor(props){
