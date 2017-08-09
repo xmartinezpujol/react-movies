@@ -6,6 +6,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './client/dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -29,6 +30,7 @@ module.exports = {
   devServer: {
       host: 'localhost',
       port: 3000,
+      historyApiFallback: true,
       contentBase: './client/dist',
       open: true,
       openPage: '', // <== Add this

@@ -1,7 +1,8 @@
 import React from 'react';
-import TitleItem from './TitleItem';
+import TitleItem from './Items/TitleItem';
 
 const API_KEY = '3068f3a34eb23cadda9e625ea4e903bd';
+const API_LANG = 'en-US';
 const MAX_TITLES = 20;
 const maxSlides = Math.trunc(((window.innerWidth - 30) / 195));
 const maxSlideMoves = Math.trunc((20 / maxSlides)) + 1;
@@ -36,7 +37,7 @@ class TitleList extends React.Component {
   }
 
   loadTitlesAPI() {
-    let url = `https://api.themoviedb.org/3/${this.props.url}?api_key=${API_KEY}${this.props.sort}`;
+    let url = `https://api.themoviedb.org/3/${this.props.url}?api_key=${API_KEY}${this.props.sort}&language=${API_LANG}`;
     fetch(url)
       .then(response => response.json())
       .then(res => {
