@@ -13,7 +13,7 @@ import './scss/styles.scss';
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter >
+    <BrowserRouter basename={'react-movies'} >
       <App />
     </BrowserRouter>
   </Provider>,
