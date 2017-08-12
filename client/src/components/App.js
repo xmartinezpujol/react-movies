@@ -6,6 +6,7 @@ import * as userActions from '../actions/userActions';
 import Header from './partials/Header';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
+import MovieDetail from './movie/containers/MovieDetail';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,14 +24,16 @@ class App extends React.Component {
     //Genre list ready from TMDB API
     const genresAPI = this.props.genrelist.genres;
     const sampleUser = this.props.user.sampleUser;
+
     return(
       <div>
-        {typeof(sampleUser) !== 'undefined' &&
+        {typeof(sampleUser) !== 'undefined' && typeof(genresAPI[0]) !== 'undefined' &&
           <div>
             <Header user={sampleUser}/>
             <Switch>
               <Route exact path='/'        render={()=> <HomePage user={sampleUser} genres={genresAPI} />}/>
               <Route path='/profile'       component={ProfilePage}/>
+              <Route path='/movie/:id'     component={MovieDetail}/>
             </Switch>
           </div>
         }

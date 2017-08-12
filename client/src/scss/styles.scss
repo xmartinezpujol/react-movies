@@ -45,8 +45,22 @@ a{
   text-decoration: none;
   color: $white;
   transition: all 0.3s ease;
+  &.black {
+    color: $black;
+  }
   &:hover{
     color: $red;
+  }
+  &.btn{
+    background-color: $black;
+    color: $white !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-height: 25px;
+    &:hover{
+      background-color: $red;
+    }
   }
 }
 
@@ -63,6 +77,11 @@ h2{
   margin: 30px;
 }
 
+.container-mid{
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+}
 
 // SCROLLBAR STYLES
 ::-webkit-scrollbar-track{
@@ -267,6 +286,7 @@ header{
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       line-height: 1.6;
+      color: $white;
     }
     .overlay{
       position: absolute;
@@ -379,5 +399,228 @@ header{
     a{
       padding: 10px 30px 10px 0px;
     }
+  }
+}
+
+.movie-detail{
+  background-color: $white;
+  .backdrop{
+    height: 500px;
+    width: 100%;
+    background-size: cover;
+  }
+  .cover{
+    position: absolute;
+    z-index: 100;
+    width: 185px !important;
+    left: 10% !important;
+    top: 280px;
+    margin-top: 110px;
+    img{
+      display: block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    ul{
+      margin-top: 25px;
+      color: $black;
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      li{
+        padding: 10px;
+      }
+    }
+  }
+  .sticky-container{
+    background-color: red;
+    padding-bottom: 0 !important;
+  }
+  .movie-menu{
+    position: relative;
+    top: -5px;
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+    background-color: $white;
+    font-size: 16px;
+    font-weight: 700;
+    a{
+      color: $black;
+      border-bottom: 5px solid $white;
+      &:hover{
+        color: $red;
+        border-bottom: 5px solid $red;
+      }
+    }
+    ul{
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      li{
+        padding: 20px;
+      }
+    }
+  }
+  .movie-info-wrapper{
+    position: relative;
+    color: $black;
+    background-color: $white;
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+  }
+  .movie-info{
+    max-width: 650px;
+    h1{
+      color: $red;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    h2{
+      margin: 25px 0;
+    }
+    span{
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    p{
+      margin-top: 35px;
+      line-height: 25px;
+    }
+    .movie-genres{
+      margin-top: 25px;
+      a{
+        font-size: 10px;
+        padding: 7px 15px;
+        background-color: $black;
+        border-radius: 5px;
+        margin-right: 10px;
+        &:hover{
+          background-color: $red;
+          color: $white;
+        }
+      }
+    }
+    .cast{
+      margin-top: 25px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      color: $black;
+      a{
+        color: $black;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  nav.movie-nav{
+    width: calc(185px);
+  }
+}
+
+.actor-card{
+  height: 100%;
+  background-color: $white;
+  width: 160px;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin-bottom: 10px;
+  text-align: center;
+  strong{
+    margin-top: 20px;
+  }
+  p{
+    line-height: normal !important;
+    margin: 5px !important;
+  }
+  .actor-portrait{
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: 138px;
+    height: 175px;
+    overflow: hidden;
+    border-radius: 2px;
+    img{
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+
+//LOADERS
+.spinner-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.list-titles{
+  .spinner-wrapper{
+    position: inherit;
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.spinner {
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+//ANIMATIONS
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
   }
 }

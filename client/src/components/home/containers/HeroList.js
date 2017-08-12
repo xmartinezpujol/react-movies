@@ -83,30 +83,28 @@ class HeroList extends React.Component {
 
     return(
       <div className='hero-titles'>
-        <div className='hero-container'>
-          {this.state.data === null &&
-            <p>Loading...</p>
-          }
-          {this.state.currentSlideSet !== 0 &&
-            <div className='nav-slide nav-prev'>
-              <i onClick={(e) => this.handleSlideMove(e, 'left')} className="material-icons">keyboard_arrow_left</i>
-            </div>
-          }
           {this.state.data !== null &&
-            this.state.data.slice(0, MAX_SLIDES).map((title, index) => {
-              //TODO Stupid fix for TheMovieDB - Remove when own API ready!!!
-              if(this.props.type === 'movie') name = title.title;
-              if(this.props.type === 'tv') name = title.name;
-              return(
-                <HeroItem key={index} title={name} votes={title.vote_average} desc={title.overview} img={title.backdrop_path}/>
-              );
-          })}
-          {this.state.currentSlideSet !== MAX_SLIDES - 1 &&
-            <div className='nav-slide nav-next'>
-              <i onClick={(e) => this.handleSlideMove(e, 'right')} className="material-icons">keyboard_arrow_right</i>
+            <div className='hero-container' style={{animation : "fadeIn 3s"}} >
+              {this.state.currentSlideSet !== 0 &&
+                <div className='nav-slide nav-prev'>
+                  <i onClick={(e) => this.handleSlideMove(e, 'left')} className="material-icons">keyboard_arrow_left</i>
+                </div>
+              }
+              {this.state.data.slice(0, MAX_SLIDES).map((title, index) => {
+                //TODO Stupid fix for TheMovieDB - Remove when own API ready!!!
+                if(this.props.type === 'movie') name = title.title;
+                if(this.props.type === 'tv') name = title.name;
+                return(
+                  <HeroItem key={index} data={title} desc={title.overview} img={title.backdrop_path}/>
+                );
+              })}
+              {this.state.currentSlideSet !== MAX_SLIDES - 1 &&
+                <div className='nav-slide nav-next'>
+                  <i onClick={(e) => this.handleSlideMove(e, 'right')} className="material-icons">keyboard_arrow_right</i>
+                </div>
+              }
             </div>
           }
-        </div>
       </div>
     );
   }

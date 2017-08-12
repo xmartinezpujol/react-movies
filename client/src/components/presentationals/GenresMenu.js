@@ -1,18 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class GenresMenu extends React.Component {
 
   render(){
     return(
-      <div className="menu-genres container">
-        <h2>Genres</h2>
-        <ul>
-          {typeof(this.props.genres) !== 'undefined' && this.props.genres.map((genre, index) => {
-             return(
-               <a key={index} href="#"><li key={index}>{genre.name}</li></a>
-             );
-          })}
-        </ul>
+      <div>
+          {typeof(this.props.genres) !== 'undefined' &&
+          <div className="menu-genres container" style={{animation : "fadeIn 2s"}}>
+            <h2>Genres</h2>
+            <ul>
+              {this.props.genres.map((genre, index) => {
+                 return(
+                   <Link to={`/${genre.name}`} key={index}><li key={index}>{genre.name}</li></Link>
+                 );
+              })}
+            </ul>
+          </div>
+        }
       </div>
     );
   }
