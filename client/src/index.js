@@ -13,7 +13,7 @@ import './scss/styles.scss';
 
 ReactDOM.render(
   <Provider onUpdate={() => window.scrollTo(0, 0)} store={store}>
-    <HashRouter basename="react-movies">
+    <HashRouter>
       <ScrollToTop>
         <App />
       </ScrollToTop>
