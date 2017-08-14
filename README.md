@@ -1,5 +1,9 @@
 # React Movies REST API - ReactJS, NodeJS, Express
 
+### Check current WIP here :
+
+https://xmartinezpujol.github.io/react-movies/
+
 ### Client / Server localhost
 Node/NPM required to install dependencies.
 

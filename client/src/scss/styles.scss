@@ -1,12 +1,12 @@
 @import 'core/variables';
 
 html{
-  -webkit-touch-callout: none;
+  /*-webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none;*/
 }
 
 //RESETS
@@ -41,6 +41,19 @@ ul{
   list-style-type: none;
 }
 
+button{
+  &.close{
+    width: 50px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    background-color: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+  }
+}
+
 a{
   text-decoration: none;
   color: $white;
@@ -52,6 +65,7 @@ a{
     color: $red;
   }
   &.btn{
+    display: inline-block;
     background-color: $black;
     color: $white !important;
     padding: 10px 20px;
@@ -91,8 +105,8 @@ h2{
 }
 
 ::-webkit-scrollbar{
-	width: 6px;
-  height: 6px;
+	width: 10px;
+  height: 15px;
 	background-color: transparent;
 }
 
@@ -233,7 +247,7 @@ header{
   overflow: hidden;
   transition: all 0.6s ease;
   @media screen and (max-width: $tablet-max){
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   .nav-slide{
     position: absolute;
@@ -312,7 +326,7 @@ header{
   overflow: hidden;
   transition: all 0.6s ease;
   @media screen and (max-width: $tablet-max){
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   .nav-slide{
     position: absolute;
@@ -395,7 +409,7 @@ header{
     flex-flow: row wrap;
     flex-flow: row nowrap;
     align-items: center;
-    overflow-x: scroll;
+    overflow-x: auto;
     a{
       padding: 10px 30px 10px 0px;
     }
@@ -413,7 +427,7 @@ header{
     position: absolute;
     z-index: 100;
     width: 185px !important;
-    left: 10% !important;
+    left: 17% !important;
     top: 280px;
     margin-top: 110px;
     img{
@@ -428,6 +442,19 @@ header{
       align-items: center;
       li{
         padding: 10px;
+        color: $white;
+        i{
+          transition: all 0.3s ease;
+          font-size: 20px;
+          background-color: $black;
+          border-radius: 50%;
+          padding: 13px;
+          box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2);
+          &:hover{
+            background-color: $red;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
@@ -437,12 +464,16 @@ header{
   }
   .movie-menu{
     position: relative;
+    display: flex;
+    position: relative;
+    justify-content: center;
     top: -5px;
     border-top: 1px solid #d7d7d7;
     border-bottom: 1px solid #d7d7d7;
     background-color: $white;
     font-size: 16px;
     font-weight: 700;
+    padding-left: 250px;
     a{
       color: $black;
       border-bottom: 5px solid $white;
@@ -456,7 +487,8 @@ header{
       display: flex;
       flex-flow: row wrap;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      width: 690px;
       li{
         padding: 20px;
       }
@@ -466,13 +498,16 @@ header{
     position: relative;
     color: $black;
     background-color: $white;
-    max-width: 80%;
     margin: 0 auto;
+    margin-left: 250px;
     display: flex;
     justify-content: center;
     flex-flow: row wrap;
   }
   .movie-info{
+    section{
+      margin-bottom: 25px;
+    }
     max-width: 650px;
     h1{
       color: $red;
@@ -496,24 +531,57 @@ header{
       a{
         font-size: 10px;
         padding: 7px 15px;
-        background-color: $black;
         border-radius: 5px;
         margin-right: 10px;
-        &:hover{
-          background-color: $red;
-          color: $white;
-        }
       }
     }
     .cast{
-      margin-top: 25px;
+      margin: 25px -15px;
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-between;
       color: $black;
-      a{
-        color: $black;
-        margin-bottom: 10px;
+    }
+    .videos-list{
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: auto;
+    }
+    .recommendations{
+      display: flex;
+      overflow-x: auto;
+      .recommendation-item{
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 250px;
+        transition: all 0.3 ease-in;
+        &:hover {
+          background-color: $red;
+        }
+        &:hover > .recommendation-info > p,
+        &:hover > .recommendation-info > span{
+          color: $white;
+        }
+        .recommendation-info{
+          padding: 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          overflow: hidden;
+          p{
+            color: $black;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0;
+            margin-right: 10px;
+          }
+          span{
+            color: $black;
+            font-size: 16px;
+            margin: 0;
+          }
+        }
       }
     }
   }
@@ -523,13 +591,13 @@ header{
 }
 
 .actor-card{
+  padding: 5px;
+  width: calc(25% - 10px);
   height: 100%;
   background-color: $white;
-  width: 160px;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  margin-bottom: 10px;
   text-align: center;
   strong{
     margin-top: 20px;
@@ -540,17 +608,71 @@ header{
   }
   .actor-portrait{
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    width: 138px;
-    height: 175px;
     overflow: hidden;
     border-radius: 2px;
     img{
       display: block;
       width: 100%;
     }
+    .no-portrait{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 138px;
+      height: 175px;
+      background-color: $grey;
+      i{
+        font-size: 60px;
+        color: $grey2;
+      }
+    }
   }
 }
 
+//MOVIES PAGE
+#movies-catalog{
+  margin: 130px 0 0 0;
+}
+.movies-collection{
+  display: flex;
+  flex-flow: row wrap;
+  margin: 3px;
+  .movies-collection-item{
+    padding: 3px;
+    width: calc((100% - 20px) / 3);
+    img{
+      width: 100%;
+      display: block;
+    }
+    .movie-collection-item-noimg{
+      background-color: $black;
+      height: 281px;
+      width: 500px;
+    }
+  }
+  .collection-pagination{
+    margin: 3px;
+    width: calc((100% - 20px) / 3);
+    background-color: red;
+  }
+}
+
+.menu-filters{
+  position: fixed;
+  background-color: #ffffff;
+  width: 100%;
+  top: 75px;
+  ul{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    color: $black;
+    li{
+      padding: 15px;
+    }
+  }
+}
 
 //LOADERS
 .spinner-wrapper{

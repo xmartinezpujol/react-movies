@@ -7,6 +7,8 @@ import Header from './partials/Header';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
 import MovieDetail from './movie/containers/MovieDetail';
+import MoviesPage from './movie/MoviesPage';
+import GenreCollection from './genre/GenreCollection';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,9 +33,12 @@ class App extends React.Component {
           <div>
             <Header user={sampleUser}/>
             <Switch>
-              <Route exact path='/'        render={()=> <HomePage user={sampleUser} genres={genresAPI} />}/>
-              <Route path='/profile'       component={ProfilePage}/>
-              <Route path='/movie/:id'     component={MovieDetail}/>
+              <Route exact path='/'                render={()=> <HomePage user={sampleUser} genres={genresAPI} />}/>
+              <Route path='/profile'               component={ProfilePage}/>
+              <Route exact path='/movies/:id'            component={MoviesPage}/>
+              <Route exact path='/movie/:id'       component={MovieDetail}/>
+              <Route path='/movie/genre/:name'     component={GenreCollection}/>
+              <Route path='/tv/genre/:name'        component={GenreCollection}/>
             </Switch>
           </div>
         }

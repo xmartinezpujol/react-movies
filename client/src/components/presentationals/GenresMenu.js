@@ -12,7 +12,7 @@ class GenresMenu extends React.Component {
             <ul>
               {this.props.genres.map((genre, index) => {
                  return(
-                   <Link to={`/${genre.name}`} key={index}><li key={index}>{genre.name}</li></Link>
+                   <Link to={`/movie/genre/${genre.name.replace(/\s+/g, '-').toLowerCase()}`} key={index}><li key={index}>{genre.name}</li></Link>
                  );
               })}
             </ul>
