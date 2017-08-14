@@ -1,13 +1,13 @@
 # React Movies REST API - ReactJS, NodeJS, Express
 
+Uses TheMovieDatabase API.
+
 ### Check current WIP here :
 
 https://xmartinezpujol.github.io/react-movies/
 
 ### Client / Server localhost
 Node/NPM required to install dependencies.
-
-![ReactJS Movies API](/server/data/preview.jpg?raw=true "ReactJS Movies API")
 
 Clone rep
 ``` shell
@@ -35,4 +35,4 @@ npm run prod
 ```
 
 ### Tech Stack
-ReactJS, NodeJS, Express, Webpack3 + DevServer, SASS, Pug(Jade).
+ReactJS, Redux, NodeJS, Express, Webpack3 + DevServer, SASS, Pug(Jade).
