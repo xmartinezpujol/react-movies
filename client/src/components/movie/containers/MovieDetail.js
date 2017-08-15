@@ -89,7 +89,6 @@ class MovieDetail extends React.Component {
     const cast = this.props.cast.cast;
     const videos = this.props.videos.videos;
     const recommendations = this.props.recommendations.recommendations;
-
     return(
       <div>
         {movie.length !== 0 && this.props.cast.type === 'FETCH_CAST_SUCCESS' && this.props.videos.type === 'FETCH_VIDEOS_SUCCESS' &&
@@ -140,14 +139,33 @@ class MovieDetail extends React.Component {
               <div className='movie-info-wrapper'>
                 <div className='movie-info'>
                   <section id="generalinfo">
-                    <h1>{movie.title}</h1>
-                    <span>{String(movie.release_date).split("-", 1)}</span>
+                    <div className="heading-info">
+                      <h1>{movie.title} <span>({String(movie.release_date).split("-", 1)})</span></h1>
+                      <p className="heading-votes">{movie.vote_average}★ <span>({movie.vote_count})</span></p>
+                    </div>
                     <div className='movie-genres'>
                       {movie.genres.map((genre) => {
                         return (
                           <Link key={genre.name} className='btn' to={`/movies/${genre.name.replace(/\s+/g, '-').toLowerCase()}/1`}>{genre.name}</Link>
                         );
                       })}
+                    </div>
+                    <div className="movie-releaseinfo">
+                      {movie.runtime !== 'null' &&
+                        <p>{movie.runtime} min</p>
+                      }
+                      {movie.release_date &&
+                        <p>{movie.release_date.split('-')[2]+'/'+movie.release_date.split('-')[1]+'/'+movie.release_date.split('-')[0]}</p>
+                      }
+                      {movie.budget !== 0 &&
+                        <p>Budget: ${movie.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                      }
+                      {movie.revenue !== 0 &&
+                        <p>Revenue: ${movie.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                      }
+                      {movie.homepage &&
+                        <a href={movie.homepage} target="_blank">Website</a>
+                      }
                     </div>
                     <p>{movie.overview}</p>
                   </section>
