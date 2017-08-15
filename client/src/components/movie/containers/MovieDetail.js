@@ -89,6 +89,8 @@ class MovieDetail extends React.Component {
     const cast = this.props.cast.cast;
     const videos = this.props.videos.videos;
     const recommendations = this.props.recommendations.recommendations;
+    const trailer = this.getTrailers(videos)[0];
+    console.log(trailer);
     return(
       <div>
         {movie.length !== 0 && this.props.cast.type === 'FETCH_CAST_SUCCESS' && this.props.videos.type === 'FETCH_VIDEOS_SUCCESS' &&
@@ -125,7 +127,7 @@ class MovieDetail extends React.Component {
                             <a data-effect='solid' data-tip="Share" data-place="right" className='black' ><li><i className="material-icons">share</i></li></a>
                             <a data-effect='solid' data-tip="Follow" data-place="right" className='black' ><li><i className="material-icons">favorite</i></li></a>
                             <a data-effect='solid' data-tip="Watch" data-place="right" className='black' ><li><i className="material-icons">bookmark</i></li></a>
-                            {videos.length !== 0 &&
+                            {typeof(trailer) !== 'undefined' &&
                               <a onClick={this.handleOpenModal} data-effect='solid' data-tip="Play Trailer" data-place="right" className='black'><li><i className="material-icons">play_arrow</i></li></a>
                             }
                             <ReactTooltip />
@@ -196,7 +198,7 @@ class MovieDetail extends React.Component {
         {this.props.movie.isFetching &&
           <Loader />
         }
-        {videos.length !== 0 && this.props.videos.type === 'FETCH_VIDEOS_SUCCESS' &&
+        {typeof(trailer) !== 'undefined' &&
           <ReactModal
              isOpen={this.state.showModal}
              contentLabel="Play Trailer"
@@ -205,7 +207,7 @@ class MovieDetail extends React.Component {
              shouldCloseOnOverlayClick={true}
           >
             <button className='close' onClick={this.handleCloseModal}>X</button>
-            <iframe width="853" height="480" src={`https://www.youtube.com/embed/${this.getTrailers(videos)[0].key}?autoplay=1`} frameBorder="0" allowFullScreen></iframe>
+            <iframe width="853" height="480" src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1`} frameBorder="0" allowFullScreen></iframe>
           </ReactModal>
         }
       </div>
