@@ -7,7 +7,9 @@ import * as castActions from '../../../actions/castActions';
 import * as recommendationsActions from '../../../actions/recommendationsActions';
 import * as videosActions from '../../../actions/videosActions';
 import Loader from '../../Loader';
-import ActorCard from '../../presentationals/ActorCard';
+import CastList from '../CastList';
+import VideosList from '../VideosList';
+import RecommendationsList from '../RecommendationsList';
 import { StickyContainer, Sticky } from 'react-sticky';
 import ReactTooltip from 'react-tooltip';
 import ReactModal from 'react-modal';
@@ -41,6 +43,7 @@ class MovieDetail extends React.Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.getTrailers = this.getTrailers.bind(this);
+    this.scrollToSection = this.scrollToSection.bind(this);
   }
 
   handleOpenModal () {
@@ -49,6 +52,11 @@ class MovieDetail extends React.Component {
 
   handleCloseModal () {
     this.setState({ showModal: false });
+  }
+
+  scrollToSection(id) {
+    const section = document.getElementById(id);
+    section.scrollIntoView({behaviour: 'smooth'});
   }
 
   getTrailers(videos) {
@@ -95,10 +103,12 @@ class MovieDetail extends React.Component {
             </div>
             <nav className='movie-menu'>
               <ul>
-                <a href="#"><li>Discussions</li></a>
-                <a href="#"><li>Reviews</li></a>
+                <a onClick={() => this.scrollToSection('cast')}><li>Cast</li></a>
                 {videos.length !== 0 &&
-                  <a href="#"><li>Videos</li></a>
+                  <a onClick={() => this.scrollToSection('videos')}><li>Videos</li></a>
+                }
+                {recommendations.length !== 0 &&
+                  <a onClick={() => this.scrollToSection('recommendations')}><li>Recommendations</li></a>
                 }
               </ul>
             </nav>
@@ -129,62 +139,35 @@ class MovieDetail extends React.Component {
               </Sticky>
               <div className='movie-info-wrapper'>
                 <div className='movie-info'>
-                  <h1>{movie.title}</h1>
-                  <span>{String(movie.release_date).split("-", 1)}</span>
-                  <div className='movie-genres'>
-                    {movie.genres.map((genre) => {
-                      return (
-                        <Link key={genre.name} className='btn' to={`/movie/genre/${genre.name.replace(/\s+/g, '-').toLowerCase()}`}>{genre.name}</Link>
-                      );
-                    })}
-                  </div>
-                  <p>{movie.overview}</p>
+                  <section id="generalinfo">
+                    <h1>{movie.title}</h1>
+                    <span>{String(movie.release_date).split("-", 1)}</span>
+                    <div className='movie-genres'>
+                      {movie.genres.map((genre) => {
+                        return (
+                          <Link key={genre.name} className='btn' to={`/movies/${genre.name.replace(/\s+/g, '-').toLowerCase()}/1`}>{genre.name}</Link>
+                        );
+                      })}
+                    </div>
+                    <p>{movie.overview}</p>
+                  </section>
                   {cast.length !== 0 &&
-                    <section>
+                    <section id="cast">
                       <h2>Top Cast</h2>
-                      <div className="cast">
-                        {cast.slice(0, 8).map((actor) => {
-                          return (
-                            <ActorCard key={actor.name} name={actor.name} character={actor.character} portrait={actor.profile_path} />
-                          );
-                        })}
-                      </div>
+                      <CastList cast={cast} />
                       <Link to={`/${id}/cast`} className='btn'>View Full Cast & Crew</Link>
                     </section>
                   }
-                  <section>
-                    <h2>Social</h2>
-                  </section>
                   {videos.length !== 0 &&
-                    <section>
+                    <section id="videos">
                       <h2>Videos</h2>
-                      <div className='videos-list'>
-                        {videos.map((video, index) => {
-                          return(
-                            <div key={index} className='video-item'>
-                              <iframe width="560" height="310" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allowFullScreen></iframe>
-                            </div>
-                          );
-                        })}
-                      </div>
+                      <VideosList videos={videos} />
                     </section>
                   }
                   {recommendations.length !== 0 &&
-                    <section>
+                    <section id="recommendations">
                       <h2>Recommendations</h2>
-                      <div className="recommendations">
-                        {recommendations.slice(0, 10).map((recommendation, index) => {
-                          return (
-                            <Link to={`/movie/${recommendation.id}`} key={index} className="recommendation-item">
-                              <img src={`https://image.tmdb.org/t/p/w250_and_h141_bestv2/${recommendation.backdrop_path}`} />
-                              <div className="recommendation-info">
-                                <p>{recommendation.title}</p>
-                                <span>{recommendation.vote_average}★</span>
-                              </div>
-                            </Link>
-                          );
-                        })}
-                      </div>
+                      <RecommendationsList recommendations={recommendations} />
                     </section>
                   }
                 </div>

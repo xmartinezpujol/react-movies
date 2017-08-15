@@ -37,8 +37,8 @@ class App extends React.Component {
               <Route path='/profile'               component={ProfilePage}/>
               <Route exact path='/movies/:id'      component={MoviesPage}/>
               <Route exact path='/movie/:id'       component={MovieDetail}/>
-              <Route path='/movie/genre/:name'     component={GenreCollection}/>
-              <Route path='/tv/genre/:name'        component={GenreCollection}/>
+              <Route path='/movies/:genre/:id'     component={MoviesPage}/>
+              <Route path='/tv/:genre/:id'         component={GenreCollection}/>
             </Switch>
           </div>
         }

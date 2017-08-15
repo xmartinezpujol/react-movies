@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ActorCard = (props) => {
+const CastItem = (props) => {
   return(
     <div className='actor-card'>
       <div className="actor-portrait">
@@ -22,4 +22,4 @@ const ActorCard = (props) => {
   );
 }
 
-export default ActorCard;
+export default CastItem;

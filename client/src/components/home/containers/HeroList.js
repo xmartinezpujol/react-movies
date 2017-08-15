@@ -95,7 +95,7 @@ class HeroList extends React.Component {
                 if(this.props.type === 'movie') name = title.title;
                 if(this.props.type === 'tv') name = title.name;
                 return(
-                  <HeroItem key={index} data={title} desc={title.overview} img={title.backdrop_path}/>
+                  <HeroItem key={index} title={title.title} desc={title.overview} img={title.backdrop_path}/>
                 );
               })}
               {this.state.currentSlideSet !== MAX_SLIDES - 1 &&

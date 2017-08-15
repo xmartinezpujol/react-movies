@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchBox from '../SearchBox';
-import Logo from '../Logo';
+import SearchBox from './SearchBox';
+import Logo from './Logo';
 import UserProfile from '../Profile/UserProfile';
-import MainMenu from '../Menus/MainMenu';
+import MainMenu from './MainMenu';
 
 class Header extends React.Component {
 	constructor(props) {

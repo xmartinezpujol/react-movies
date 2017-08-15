@@ -1,7 +1,7 @@
 import React from 'react';
 import HeroList from './containers/HeroList';
 import TitleList from './containers/TitleList';
-import GenresMenu from '../presentationals/GenresMenu';
+import GenresMenu from './GenresMenu';
 import Settings from '../Profile/Settings';
 
 class HomePage extends React.Component {

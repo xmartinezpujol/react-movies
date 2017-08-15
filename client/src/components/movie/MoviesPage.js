@@ -1,30 +1,79 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as moviesActions from '../../actions/moviesActions';
+import MoviesCollection from './MoviesCollection';
 
 class MoviesPage extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.getGenreAPIId = this.getGenreAPIId.bind(this);
+  }
+
+  getGenreAPIId(genrename) {
+    genrename = genrename.split('-').map((word) => {
+      return (
+        word.charAt(0).toUpperCase() + word.slice(1)
+      );
+    });
+
+    genrename = genrename.join(" ");
+
+    //Exception
+    if(genrename === 'Tv Movie') genrename = 'TV Movie';
+
+    //Convert text genre to TMDB ids
+    const genreAPI = this.props.genres.genres.filter((genre) => {
+      return(
+        genre.name === genrename
+      );
+    });
+
+    console.log(genreAPI);
+    return genreAPI[0].id;
+  }
+
   componentWillMount() {
     const page = this.props.match.params.id;
-    
-    //Render Movies List View
-    this.props.dispatch(moviesActions.fetchMovies('popularity.desc', page));
+    let genrename = this.props.match.params.genre;
+
+    if(genrename){
+      const genreid = this.getGenreAPIId(genrename);
+
+      //Render Movies with Genre List View
+      this.props.dispatch(moviesActions.fetchMovies('popularity.desc', page, genreid));
+    }
+    else{
+      //Render Movies List View
+      this.props.dispatch(moviesActions.fetchMovies('popularity.desc', page));
+    }
   }
 
   componentWillReceiveProps(newProps){
-    const page = this.props.match.params.id;
-
     if(newProps.location.pathname !== this.props.location.pathname){
-      //Rerender Detail View
-      this.props.dispatch(moviesActions.fetchMovies('popularity.desc', page));
+      const page = this.props.match.params.id;
+      let genrename = this.props.match.params.genre;
+
+      if(genrename){
+        const genreid = this.getGenreAPIId(genrename);
+
+        //Render Movies with Genre List View
+        this.props.dispatch(moviesActions.fetchMovies('popularity.desc', newProps.location.pathname.split("/")[3], genreid));
+      }
+      else{
+        //Render Movies List View
+        this.props.dispatch(moviesActions.fetchMovies('popularity.desc', newProps.location.pathname.split("/")[2]));
+      }
     }
   }
 
   render() {
     const movies = this.props.movies.movies;
+    const genre = this.props.match.params.genre;
     const page = parseInt(this.props.match.params.id);
+
     return(
       <div>
         <nav className="menu-filters">
@@ -36,24 +85,7 @@ class MoviesPage extends React.Component {
         </nav>
         {movies.length !== 0 && this.props.movies.type === 'FETCH_MOVIES_SUCCESS' &&
           <section id="movies-catalog">
-            <div className="movies-collection">
-              {movies.map((movie, index) => {
-                return(
-                  <div key={`movie-${index}`} className="movies-collection-item">
-                    {movie.backdrop_path &&
-                      <img src={`https://image.tmdb.org/t/p/w500_and_h281_bestv2${movie.backdrop_path}`} />
-                    }
-                    {!movie.backdrop_path &&
-                      <div className="movie-collection-item-noimg"></div>
-                    }
-                  </div>
-                );
-              })}
-              <div className="collection-pagination">
-                <Link to={`/movies/${page - 1}`} className="prev-page">{`Page ${page - 1}`}</Link>
-                <Link to={`/movies/${page + 1}`} className="next-page">{`Page ${page + 1}`}</Link>
-              </div>
-            </div>
+            <MoviesCollection movies={movies} page={page} genre={genre ? genre : false} />
           </section>
         }
       </div>
@@ -62,7 +94,8 @@ class MoviesPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => { return {
-  movies: state.movies
+  movies: state.movies,
+  genres: state.genres
 }};
 
 export default withRouter(connect(mapStateToProps)(MoviesPage));

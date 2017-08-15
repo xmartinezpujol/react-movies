@@ -478,6 +478,7 @@ header{
       color: $black;
       border-bottom: 5px solid $white;
       &:hover{
+        cursor: pointer;
         color: $red;
         border-bottom: 5px solid $red;
       }
@@ -505,8 +506,13 @@ header{
     flex-flow: row wrap;
   }
   .movie-info{
+    margin-bottom: 100px;
     section{
-      margin-bottom: 25px;
+      padding-top: 80px;
+      margin-bottom: -50px;
+      &:first-of-type{
+        padding-top: 0;
+      }
     }
     max-width: 650px;
     h1{
@@ -560,6 +566,11 @@ header{
         &:hover > .recommendation-info > p,
         &:hover > .recommendation-info > span{
           color: $white;
+        }
+        .recommendation-noimg{
+          background-color: $black;
+          height: 141px;
+          width: 250px;
         }
         .recommendation-info{
           padding: 10px;
@@ -640,7 +651,21 @@ header{
   .movies-collection-item{
     padding: 3px;
     width: calc((100% - 20px) / 3);
+    overflow: hidden;
+    &:hover > div > div > img{
+      transform: scale(1.3);
+    }
+    &:hover > div > .collection-item-info{
+      background-color: $red;
+      background-image: none;
+      background-blend-mode: none;
+      color: $white;
+    }
+    .collect-img-wrapper{
+      overflow: hidden;
+    }
     img{
+      transition: all 0.6s ease;
       width: 100%;
       display: block;
     }
@@ -649,16 +674,55 @@ header{
       height: 281px;
       width: 500px;
     }
+    .collection-item-info{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      padding: 20px;
+      background-color: #DCD9D4;
+      background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+      background-blend-mode: screen;
+      color: $black;
+      font-weight: 700;
+      p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 20px;
+      }
+    }
   }
   .collection-pagination{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     margin: 3px;
     width: calc((100% - 20px) / 3);
-    background-color: red;
+    background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+    background-blend-mode: multiply;
+    .prev-page, .next-page{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      height: 100%;
+      text-align: center;
+      border: 3px solid $black;
+      &:hover{
+        background-color: $black;
+      }
+      i{
+        font-size: 100px;
+      }
+    }
   }
 }
 
 .menu-filters{
   position: fixed;
+  z-index: 100;
   background-color: #ffffff;
   width: 100%;
   top: 75px;
@@ -745,4 +809,22 @@ header{
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
+}
+
+.fadein-enter {
+  opacity: 0.01;
+}
+
+.fadein-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fadein-leave {
+  opacity: 1;
+}
+
+.fadein-leave.fadein-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
