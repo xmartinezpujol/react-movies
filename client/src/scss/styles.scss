@@ -916,6 +916,9 @@ header{
   .person-info{
     max-width: 600px;
     margin-right: 365px;
+    .bio{
+      margin-bottom: -55px;
+    }
   }
   .person-menu{
     position: relative;
@@ -963,6 +966,8 @@ header{
 }
 
 #knownfor{
+  padding-top: 80px;
+  margin-bottom: -55px;
   .knownfor{
     display: flex;
     flex-flow: row wrap;
@@ -998,10 +1003,13 @@ header{
 #credits{
   margin-top: 25px;
   margin-bottom: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  padding-top: 80px;
   color: $grey3;
   font-weight: 300;
+  .credits-wrapper{
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+  }
   h2, h3{
     color: $black;
   }
@@ -1036,7 +1044,7 @@ header{
     padding: 10px 0;
   }
   .character{
-    display: inline-block;    
+    display: inline-block;
   }
 }
 

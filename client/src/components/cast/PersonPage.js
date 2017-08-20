@@ -193,7 +193,7 @@ class PersonPage extends React.Component {
                 <div className='person-info container-mid'>
                   <h1>{person.name}</h1>
                   {person.biography.length !== 0 &&
-                    <div>
+                    <div className="bio">
                       <h2>Biography</h2>
                       <p>{person.biography}</p>
                     </div>
@@ -206,64 +206,66 @@ class PersonPage extends React.Component {
                   }
                   {credits.length !== 0 &&
                     <section id="credits">
-                      <h2>Credits</h2>
-                      {credits.cast.length !== 0 &&
-                        <h3>Acting</h3>
-                      }
-                      {this.orderCreditsByYear(credits).map((movie, index) => {
-                        let name, date, link;
-                        if(movie.media_type === 'tv'){
-                          name = movie.name;
-                          date = movie.first_air_date;
-                          link = 'tv';
-                          if(date === "" || typeof(date) === 'undefined') date = 'Unknown';
+                      <div className="credits-wrapper">
+                        <h2>Credits</h2>
+                        {credits.cast.length !== 0 &&
+                          <h3>Acting</h3>
                         }
-                        else{
-                          name = movie.title;
-                          date = movie.release_date;
-                          link = 'movie';
-                          if(date === "" || typeof(date) === 'undefined') date = 'Unknown';
-                        }
-                        return(
-                          <div className="credit-item" key={index}>
-                            <strong>{date.split("-")[0]}</strong>
-                            <Link to={`/${link}/${movie.id}`}>{name}</Link>
-                            {movie.character !== "" &&
-                            <div className="character">
-                              as
-                              <span>{movie.character}</span>
+                        {this.orderCreditsByYear(credits).map((movie, index) => {
+                          let name, date, link;
+                          if(movie.media_type === 'tv'){
+                            name = movie.name;
+                            date = movie.first_air_date;
+                            link = 'tv';
+                            if(date === "" || typeof(date) === 'undefined') date = 'Unknown';
+                          }
+                          else{
+                            name = movie.title;
+                            date = movie.release_date;
+                            link = 'movie';
+                            if(date === "" || typeof(date) === 'undefined') date = 'Unknown';
+                          }
+                          return(
+                            <div className="credit-item" key={index}>
+                              <strong>{date.split("-")[0]}</strong>
+                              <Link to={`/${link}/${movie.id}`}>{name}</Link>
+                              {movie.character !== "" &&
+                              <div className="character">
+                                as
+                                <span>{movie.character}</span>
+                              </div>
+                              }
                             </div>
-                            }
-                          </div>
-                        );
-                      })}
-                      {credits.crew.length !== 0 &&
-                        <h3>Crew</h3>
-                      }
-                      {this.orderCrewByYear(credits.crew).map((movie, index) => {
-                        let name, date, link;
-                        if(movie.media_type === 'tv'){
-                          name = movie.name;
-                          date = movie.first_air_date;
-                          link = 'tv';
-
-                          if(date === "") date = 'Unknown';
+                          );
+                        })}
+                        {credits.crew.length !== 0 &&
+                          <h3>Crew</h3>
                         }
-                        else{
-                          name = movie.title;
-                          date = movie.release_date;
-                          link = 'movie';
+                        {this.orderCrewByYear(credits.crew).map((movie, index) => {
+                          let name, date, link;
+                          if(movie.media_type === 'tv'){
+                            name = movie.name;
+                            date = movie.first_air_date;
+                            link = 'tv';
 
-                          if(date === "") date = 'Unknown';
-                        }
-                        return(
-                          <div className="credit-item" key={index}>
-                            <strong>{date.split("-")[0]}</strong>
-                            <Link to={`/${link}/${movie.id}`}>{name}</Link>
-                            as <span>{movie.job}</span>
-                          </div>
-                        );
-                      })}
+                            if(date === "") date = 'Unknown';
+                          }
+                          else{
+                            name = movie.title;
+                            date = movie.release_date;
+                            link = 'movie';
+
+                            if(date === "") date = 'Unknown';
+                          }
+                          return(
+                            <div className="credit-item" key={index}>
+                              <strong>{date.split("-")[0]}</strong>
+                              <Link to={`/${link}/${movie.id}`}>{name}</Link>
+                              as <span>{movie.job}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </section>
                   }
                 </div>
