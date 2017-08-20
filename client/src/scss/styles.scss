@@ -594,6 +594,7 @@ header{
       color: $black;
     }
     .videos-list{
+      position: relative;
       display: flex;
       flex-flow: row nowrap;
       overflow-x: auto;
