@@ -8,6 +8,8 @@ import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
 import MovieDetail from './movie/containers/MovieDetail';
 import MoviesPage from './movie/MoviesPage';
+import CastPage from './cast/CastPage';
+import PersonPage from './cast/PersonPage';
 import GenreCollection from './genre/GenreCollection';
 
 class App extends React.Component {
@@ -37,7 +39,9 @@ class App extends React.Component {
               <Route path='/profile'               component={ProfilePage}/>
               <Route exact path='/movies/:id'      component={MoviesPage}/>
               <Route exact path='/movie/:id'       component={MovieDetail}/>
+              <Route exact path='/movie/:id/cast'  component={CastPage}/>
               <Route path='/movies/:genre/:id'     component={MoviesPage}/>
+              <Route exact path='/person/:id'      component={PersonPage}/>
               <Route path='/tv/:genre/:id'         component={GenreCollection}/>
             </Switch>
           </div>

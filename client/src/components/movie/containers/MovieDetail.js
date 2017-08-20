@@ -86,11 +86,11 @@ class MovieDetail extends React.Component {
   render() {
     const id = this.props.match.params.id;
     const movie = this.props.movie.movie;
-    const cast = this.props.cast.cast;
+    const cast = this.props.cast.cast.cast;
     const videos = this.props.videos.videos;
     const recommendations = this.props.recommendations.recommendations;
     const trailer = this.getTrailers(videos)[0];
-    console.log(trailer);
+
     return(
       <div>
         {movie.length !== 0 && this.props.cast.type === 'FETCH_CAST_SUCCESS' && this.props.videos.type === 'FETCH_VIDEOS_SUCCESS' &&
@@ -175,7 +175,7 @@ class MovieDetail extends React.Component {
                     <section id="cast">
                       <h2>Top Cast</h2>
                       <CastList cast={cast} />
-                      <Link to={`/${id}/cast`} className='btn'>View Full Cast & Crew</Link>
+                      <Link to={`/movie/${id}/cast`} className='btn'>View Full Cast & Crew</Link>
                     </section>
                   }
                   {videos.length !== 0 &&

@@ -7,7 +7,8 @@ class CastList extends React.Component {
       <div className="cast">
         {this.props.cast.slice(0, 8).map((actor) => {
           return (
-            <CastItem key={actor.name}
+            <CastItem key={actor.id}
+                      id={actor.id}
                       name={actor.name}
                       character={actor.character}
                       portrait={actor.profile_path} />

@@ -6,7 +6,7 @@ const CastItem = (props) => {
     <div className='actor-card'>
       <div className="actor-portrait">
       {props.portrait &&
-        <Link key={props.name} to={`/${props.name}`}>
+        <Link key={props.name} to={`/person/${props.id}`}>
           <img src={`https://image.tmdb.org/t/p/w138_and_h175_bestv2/${props.portrait}`} />
         </Link>
       }

@@ -8,6 +8,9 @@ import list from './listReducer';
 import cast from './castReducer';
 import videos from './videosReducer';
 import recommendations from './recommendationsReducer';
+import person from './personReducer';
+import social from './socialReducer';
+import credits from './creditsReducer';
 
 const rootReducer = combineReducers({
   // short hand property names
@@ -19,7 +22,10 @@ const rootReducer = combineReducers({
   list,
   cast,
   videos,
-  recommendations
+  recommendations,
+  person,
+  social,
+  credits
 })
 
 export default rootReducer;
