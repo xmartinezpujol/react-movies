@@ -5,7 +5,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
-    "pug": "^2.0.0-rc.2",
+    "pug": "^3.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.3",
