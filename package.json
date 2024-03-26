@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3",
+    "express": "^4.19.2",
     "fs": "0.0.1-security",
     "pug": "^2.0.0-rc.2",
     "react": "^15.6.1",
